@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  pressbrief:
+    container_name: pressbrief
+    build: .
+    image: pressbrief
+    environment:
+      - LIMIT_PER_RSS=4
+      - URL2QR=True
+      - BRIEF_OUTPUT=/output
+    volumes:
+      # dir for resulting briefs
+      - ${HOST_OUTPUT}:${BRIEF_OUTPUT}

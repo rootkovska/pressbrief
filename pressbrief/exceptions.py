@@ -1,0 +1,2 @@
+class PressBriefError(Exception):
+    pass

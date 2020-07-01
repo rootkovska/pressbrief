@@ -1,0 +1,45 @@
+newspapers:
+  nyt:
+    name: The New York Times
+    rss:
+      - https://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml
+      - https://rss.nytimes.com/services/xml/rss/nyt/World.xml
+  wsj:
+    name: The Wall Street Journal
+    rss:
+      - https://feeds.a.dj.com/rss/RSSWorldNews.xml
+      - https://feeds.a.dj.com/rss/RSSOpinion.xml
+      - https://feeds.a.dj.com/rss/RSSMarketsMain.xml
+  usa:
+    name: USA Today
+    rss:
+      - http://rssfeeds.usatoday.com/usatoday-NewsTopStories
+      - http://rssfeeds.usatoday.com/UsatodaycomWorld-TopStories
+  wp:
+    name: Washington Post
+    rss:
+      - http://feeds.washingtonpost.com/rss/business
+      - http://feeds.washingtonpost.com/rss/world
+  td:
+    name: The Independent
+    rss:
+      - http://www.independent.co.uk/rss
+      - https://www.independent.co.uk/news/world/rss
+  tg:
+    name: The Guardian
+    rss:
+      - https://www.theguardian.com/mostviewed/rss
+      - https://www.theguardian.com/world/rss
+  rp:
+    name: Rzeczpospolita
+    rss:
+      - https://www.rp.pl/rss/
+  pb:
+    name: Puls Biznesu
+    rss:
+      - https://www.pb.pl/rss/najnowsze.xml?utm_source=RSS&utm_medium=RSS&utm_campaign=Z%20ostatniej%20chwili
+  gp:
+    name: Dziennik Gazeta Prawna
+    rss:
+      - http://rss.gazetaprawna.pl/GazetaPrawna
+      - http://rss.gazetaprawna.pl/GazetaPrawna-Biznes
