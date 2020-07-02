@@ -11,7 +11,7 @@ class News:
         self.title = title
         self.summary = self._cleanse(summary)
         self.url = Shortener().tinyurl.short(url)
-        self.published_date = time.strftime("%B %e, %H:%M", published_date)
+        self.published_date = time.strftime("%A, %B %e, %H:%M UTC", published_date)
         self.author = author or "N/A"
 
     def _cleanse(self, text: str) -> str:

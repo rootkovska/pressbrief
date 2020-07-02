@@ -47,8 +47,11 @@ class Newspaper:
         return News(title, summary, url, published_date, author)
 
     def _is_today_news(self, rss_entry: feedparser.FeedParserDict) -> bool:
-        date = (
-            rss_entry.published_parsed if hasattr(rss_entry, "published_parsed") else
-            rss_entry.updated_parsed if hasattr(rss_entry, "updated_parsed") else None
+        published_time = (
+            rss_entry.published_parsed if hasattr(rss_entry, "published_parsed")
+            else rss_entry.updated_parsed if hasattr(rss_entry, "updated_parsed")
+            else None
         )
-        return date is not None and date.tm_mday == time.gmtime().tm_mday
+        time_diff = (time.mktime(time.gmtime()) - time.mktime(published_time)) / 3600
+
+        return published_time is not None and time_diff < 24
