@@ -6,7 +6,7 @@ services:
     build: .
     image: pressbrief
     environment:
-      - LIMIT_PER_RSS=4
+      - LIMIT_PER_RSS=8
       - URL2QR=True
       - BRIEF_OUTPUT=/output
     volumes:
