@@ -22,9 +22,6 @@ class PDFExporter:
         pdf = BytesIO()
         html = self.html_exporter.as_string(newspapers, title, subtitle)
 
-        with open("/output/test.html", "w") as f:
-            f.write(html)
-
         style = CSS(string=pdf_style)
         HTML(string=html).write_pdf(pdf, stylesheets=[style])
 
