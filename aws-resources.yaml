@@ -1,0 +1,80 @@
+# Reference: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-reference.html
+AWSTemplateFormatVersion: 2010-09-09
+Resources:
+  Pressbrief:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: Pressbrief
+      Handler: runner.lambda_handler
+      Role: !GetAtt PressbriefRole.Arn
+      Code:
+        ZipFile: |
+          def lambda_handler(event, context):
+            pass
+      Runtime: python3.6
+      MemorySize: 128
+      Timeout: 300
+      Environment:
+        Variables:
+          CONSUMER_KEY: !Ref ConsumerKey
+          CONSUMER_SECRET: !Ref ConsumerSecret
+          DROPBOX_ACCESS_TOKEN: !Ref DropboxAccessToken
+          TARGET_USERNAME: !Ref TargetUsername
+  PressbriefRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: PressbriefRole
+      AssumeRolePolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+                - lambda.amazonaws.com
+            Action:
+              - sts:AssumeRole
+      Path: /
+      Policies:
+        - PolicyName: AWSLambdaBasicExecutionRole
+          PolicyDocument:
+            Version: 2012-10-17
+            Statement:
+              - Effect: Allow
+                Action: logs:*
+                Resource: arn:aws:logs:*:*:*
+  PressbriefSchedule:
+    Type: AWS::Events::Rule
+    Properties:
+      Name: PressbriefSchedule
+      ScheduleExpression: !Sub cron(0 0 * * ? *)
+      Targets:
+        - Id: PressbriefScheduleTarget
+          Arn:
+            Fn::GetAtt:
+              - Pressbrief
+              - Arn
+      State: ENABLED
+  PressbriefInvokeLambdaPermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      FunctionName: !Ref Pressbrief
+      Action: lambda:InvokeFunction
+      Principal: events.amazonaws.com
+      SourceArn:
+        Fn::GetAtt:
+          - PressbriefSchedule
+          - Arn
+Parameters:
+  ConsumerKey:
+    Type: String
+  ConsumerSecret:
+    Type: String
+  DropboxAccessToken:
+    Type: String
+  TargetUsername:
+    Type: String
+  BriefPeriod:
+    Type: Number
+    Default: 1
+    MinValue: 1
+    MaxValue: 7

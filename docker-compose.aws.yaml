@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  pressbrief-aws:
+    container_name: pressbrief-aws
+    build:
+      context: .
+      dockerfile: Dockerfile.aws
+    image: pressbrief
+    env_file: 
+      - .env
+    environment:
+      # - AWS_ACCESS_KEY_ID=
+      # - AWS_SECRET_ACCESS_KEY=
+      # - AWS_DEFAULT_REGION=
+      # - DROPBOX_ACCESS_TOKEN=
+      - LIMIT_PER_RSS=8
+      - URL2QR=True
+      - BRIEF_OUTPUT=/output
