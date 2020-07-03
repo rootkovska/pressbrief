@@ -1,36 +1,35 @@
 html_style = """
     <style>
         body {
-            font-family: "Noto Sans ExtraCondensed", sans-serif;
+            font-family: "Noto Sans", sans-serif;
             font-size: 8px;
             line-height: 1.25;
         }
 
         .title {
             font-weight: bold;
-            font-size: 16px;
+            font-size: 14px;
             text-align: center;
         }
 
         .subtitle {
             font-style: italic;
-            font-size: 12px;
             text-align: center;
             margin-bottom: 20px;
             color: gray;
         }
 
         .newspaper-name {
-            font-weight: bold;
-            font-size: 14px;
             text-align: center;
+            font-weight: bold;
+            font-size: 12px;
         }
 
         .newspaper-info {
-            font-style: italic;
-            font-size: 10px;
-            text-align: center;
             margin-bottom: 10px;
+            text-align: center;
+            font-style: italic;
+            font-size: 6px;
             color: gray;
         }
 
@@ -55,7 +54,6 @@ html_style = """
         .news-text {
             flex: 1;
             text-align: justify;
-            font-family: "Noto Sans ExtraCondensed Light"
         }
 
         .news-title {
@@ -71,6 +69,7 @@ html_style = """
             justify-content: space-between;
             margin: 1px 0;
             font-style: italic;
+            font-size: 6px;
             color: gray;
         }          
     </style>
