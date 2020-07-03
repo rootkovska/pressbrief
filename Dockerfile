@@ -9,7 +9,6 @@ RUN apt-get update \
     libffi-dev \
     shared-mime-info \
     cron \
-    fonts-noto \
     && rm -rf /var/lib/apt/lists/*
 
 COPY Pipfile Pipfile.lock /app/

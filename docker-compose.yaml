@@ -5,7 +5,10 @@ services:
     container_name: pressbrief
     build: .
     image: pressbrief
+    env_file: 
+      - .env
     environment:
+      # - DROPBOX_ACCESS_TOKEN=
       - LIMIT_PER_RSS=8
       - URL2QR=True
       - BRIEF_OUTPUT=/output
