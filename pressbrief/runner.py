@@ -18,7 +18,7 @@ logger = logging.getLogger()
 if logger.hasHandlers():
     logger.setLevel(logging.INFO)
 else:
-    logging.basicConfig(format="%(asctime)s %(message)s", level=logging.INFO)
+    logging.basicConfig(format="%(asctime)s %(levelname)s: %(message)s", level=logging.INFO)
 
 
 def lambda_handler(event: Any, context: LambdaContext) -> None:
@@ -32,7 +32,7 @@ def main() -> None:
         raise PressBriefError("No storage provided!")
 
     # bot parameters
-    limit_per_rss = os.getenv("LIMIT_PER_RSS", 10)
+    limit_per_rss = os.getenv("LIMIT_PER_RSS", 4)
     url2qrcode = str2bool(os.getenv("URL2QR", "False"))
 
     # storage pamaeters
@@ -98,7 +98,7 @@ def main() -> None:
     subtitle = f"{limit_per_rss} news/RSS feeds, {datetime.now().strftime('%H:%M:%S UTC')}"
     pdf = exporter.export(newspapers, title, subtitle)
 
-    filename = f"pressbrief-{date_str}.pdf"
+    filename = f"pressbrief-daily-{date_str}.pdf"
     if brief_output is not None:
         logger.info("Saving locally...")
 
@@ -111,7 +111,12 @@ def main() -> None:
         logger.info("Uploading to Dropbox...")
 
         brief_path = Path("/") / filename
-        dbx.files_upload(pdf.getvalue(), brief_path.as_posix())
+
+        try:
+            dbx.files_upload(pdf.getvalue(), brief_path.as_posix())
+        except ApiError:
+            logger.error("Brief exists!")
+            raise
 
         logger.info("Brief uploaded")
 

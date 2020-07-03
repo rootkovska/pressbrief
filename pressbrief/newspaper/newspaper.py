@@ -48,9 +48,9 @@ class Newspaper:
 
     def _is_today_news(self, rss_entry: feedparser.FeedParserDict) -> bool:
         published_time = (
-            rss_entry.published_parsed if hasattr(rss_entry, "published_parsed")
-            else rss_entry.updated_parsed if hasattr(rss_entry, "updated_parsed")
-            else None
+            rss_entry.published_parsed if hasattr(rss_entry, "published_parsed") else
+            rss_entry.updated_parsed if hasattr(rss_entry, "updated_parsed") else 
+            None
         )
         time_diff = (time.mktime(time.gmtime()) - time.mktime(published_time)) / 3600
 
