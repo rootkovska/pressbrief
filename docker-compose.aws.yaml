@@ -6,7 +6,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.aws
-    image: pressbrief
+    image: pressbrief-aws
     env_file: 
       - .env
     environment:

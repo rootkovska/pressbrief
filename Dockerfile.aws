@@ -15,7 +15,7 @@ RUN mkdir -p /var/task/lib \
     && find /var/task/lib/* -type f -name 'libpango-1.0*' -exec sh -c 'ln -s $(basename {}) /var/task/lib/pango-1.0' \; \
     && find /var/task/lib/* -type f -name 'libpangocairo-1.0*' -exec sh -c 'ln -s $(basename {}) /var/task/lib/pangocairo-1.0' \;
 
-COPY pressbrief/. /var/task/
+COPY pressbrief/. config.yaml /var/task/
 RUN zip -9yr function.zip ./
 
 COPY scripts/aws-deployment.sh aws-resources.yaml /var/task/

@@ -35,5 +35,5 @@ jobs:
             --env AWS_DEFAULT_REGION \
             --env LIMIT_PER_RSS \
             --env URL2QR \
-            tweetbrief-aws
+            pressbrief-aws
             
