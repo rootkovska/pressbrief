@@ -13,7 +13,7 @@ Resources:
             pass
       Runtime: python3.6
       MemorySize: 128
-      Timeout: 300
+      Timeout: 900
       Environment:
         Variables:
           CONSUMER_KEY: !Ref ConsumerKey
